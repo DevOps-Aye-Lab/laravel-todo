@@ -17,12 +17,9 @@ jobs:
 
 workflows:
   version: 2
-  notify_deploy:
+  build_and_test:
     jobs:
-      - build
       - deploy:
-          requires:
-            - build
           filters:
             branches:
               only: master
