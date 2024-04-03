@@ -19,6 +19,6 @@ jobs:
       - run:
           name: Deploy to server
           command: ssh "$USERNAME@$HOST" "cd /home/ubuntu/devops && ./deploy.sh"
-          #environment:
-            #HOST: $HOST
-            #USERNAME: $USERNAME
+          environment:
+            HOST: $HOST
+            USERNAME: $USERNAME
