@@ -13,7 +13,7 @@ jobs:
 
       - run:
           name: Deploy to server
-          command: ssh -o StrictHostKeyChecking=no $USERNAME@$HOST 'cd /home/ubuntu/devops && ./deploy.sh'
+          command: ssh $USERNAME@$HOST 'cd /home/ubuntu/devops && ./deploy.sh'
 
 workflows:
   version: 2
