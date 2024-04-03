@@ -15,9 +15,6 @@ jobs:
       - run:
           name: Deploy to server
           command: ssh $USERNAME@$HOST "cd /home/ubuntu/devops && ./deploy.sh"
-          environment:
-            HOST: $HOST
-            USERNAME: $USERNAME
 
 workflows:
   version: 2
