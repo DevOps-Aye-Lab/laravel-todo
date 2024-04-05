@@ -1,25 +1,26 @@
 version: 2.1
 
 jobs:
-  deploy:
+  build-prod:
     docker:
-      - image: circleci/php:7.2-browsers
-
+        - image: ubuntu:latest  
     steps:
-      - checkout
-      - add_ssh_keys:
-          fingerprints:
-            - $SSHKEY
-
-      - run:
-          name: Deploy to server
-          command: ssh -o StrictHostKeyChecking=no $USERNAME@$HOST 'cd /home/ubuntu/devops && ./deploy.sh'
+        - checkout
+        - run:
+            name: run ssh on server
+            command: apt-get update && apt-get install -y openssh-client
+        - run:
+            name: SSH to Server
+            command: |
+                echo "Deploy the server"
+                ssh $USERNAME@$HOST -o StrictHostKeyChecking=no
+                cd /home/ubuntu/devops  ./deploy.sh
 
 workflows:
-  version: 2
-  build_and_test:
-    jobs:
-      - deploy:
+  build_laravel:
+    jobs: 
+      - build-prod:
           filters:
             branches:
-              only: master
+              only:
+                - master
