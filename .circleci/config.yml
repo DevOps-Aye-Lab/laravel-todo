@@ -14,7 +14,8 @@ jobs:
             command: |
                 echo "Deploy the server"
                 ssh $USERNAME@$HOST -o StrictHostKeyChecking=no
-                cd /home/ubuntu/devops ./deploy.sh
+                cd /home/ubuntu/devops 
+                ./deploy.sh
 
 workflows:
   build_laravel:
