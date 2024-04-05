@@ -8,14 +8,15 @@ jobs:
         - checkout
         - run:
             name: run ssh on server
-            command: apt-get update && apt-get install -y openssh-client
+            command: |
+                apt-get update
+                apt list --upgradable
+                apt-get install -y openssh-client
         - run:
             name: SSH to Server
             command: |
                 echo "Access the server"
-                ssh $USERNAME@$HOST -o StrictHostKeyChecking=no
-                cd /home/ubuntu/devops 
-                ./deploy.sh
+                ssh $USERNAME@$HOST -o StrictHostKeyChecking=no 'cd /home/ubuntu/devops && ./deploy.sh'
 
 workflows:
   build_laravel:
